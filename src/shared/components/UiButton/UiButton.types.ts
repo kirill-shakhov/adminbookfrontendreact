@@ -1,20 +1,23 @@
-import {ButtonHTMLAttributes, ReactNode} from "react";
+import {ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode} from "react";
 
-export interface UiButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
-    href?: string;
-    disabled?: boolean;
-    loading?: boolean;
-    size?: 'sm' | 'md' | 'lg';
+interface DefaultProps {
+  children?: ReactNode;
+  loading?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
+  theme?: 'danger' | 'primary' | 'secondary';
 }
 
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, DefaultProps {
+}
 
-// {
-//     href?: string;
-//     disabled?: boolean;
-//     type?: 'button' | 'submit' | 'reset';
-//     loading?: boolean;
-//     size?: 'sm' | 'md' | 'lg';
-//     block?: boolean;
-//     theme?: 'danger' | 'primary' | 'secondary';
-// }
+export interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement>, DefaultProps {
+}
+
+export type UiButtonProps = ButtonProps & AnchorProps & {
+  href?: string;
+};
+
+export type UiButtonHookProps = DefaultProps & {
+  disabled?: boolean;
+}
