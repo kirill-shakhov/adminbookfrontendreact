@@ -9,10 +9,10 @@ const UiInput: FC<UiInputProps> =
      placeholder,
      autoComplete,
      readOnly,
-    disabled
+     disabled
    }) => {
 
-    const {rootClasses} = useUiInput({readOnly});
+    const {rootClasses} = useUiInput({readOnly, disabled});
 
     return (
       <>
