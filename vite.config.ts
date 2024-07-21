@@ -7,8 +7,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // Устанавливаем псевдоним '@' для пути к каталогу 'src'
-      '@': fileURLToPath(new URL('src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('src', import.meta.url)),
+      '@modules': fileURLToPath(new URL('src/modules', import.meta.url)),
+      '@moduleAuth': fileURLToPath(new URL('src/modules/auth', import.meta.url)),
+    },
+    extensions: ['.tsx', '.ts', '.jsx', '.js']
   }
 })
