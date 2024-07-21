@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.scss'
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import {UiInput} from "./shared/components/UiInput";
+import {UiButton} from "./shared/components/UiButton";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const validationSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string().required("Required"),
+});
 
-export default App
+const App: React.FC = () => (
+  <div>
+    <h1>Anywhere in your app!</h1>
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={validationSchema}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+        <Form onSubmit={handleSubmit}>
+          <UiInput
+            label={'email'}
+            type="email"
+            name="email"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
+            errors={errors.email}
+            touched={touched.email}
+          />
+
+          <UiInput
+            label={'password'}
+            type="password"
+            name="password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
+            errors={errors.password}
+            touched={touched.password}
+          />
+
+          <UiButton
+          type={'submit'}
+          disabled={isSubmitting}
+          >
+            Submit
+          </UiButton>
+        </Form>
+      )}
+    </Formik>
+  </div>
+);
+
+export default App;
