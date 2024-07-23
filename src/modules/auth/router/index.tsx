@@ -10,7 +10,7 @@ export default [
     element: <LoginView/>,
   },
   {
-    path: 'registration',
+    path: 'register',
     element: <RegistrationView/>,
   },
 ] as RouteObject[];
