@@ -2,11 +2,16 @@
 import {createBrowserRouter} from 'react-router-dom';
 import modules from "@modules/index";
 import App from "@/App";
+import PrivateRoute from "@/router/guards/PrivateRoute.tsx";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
+    element: (
+      <PrivateRoute
+        permissions={['USER', 'ADMIN']}>
+        <App/>
+      </PrivateRoute>)
   },
   ...modules.router
 ]);
