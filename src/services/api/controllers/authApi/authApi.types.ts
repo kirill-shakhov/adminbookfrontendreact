@@ -25,18 +25,18 @@ export interface AuthResponse {
     user: IUser;
 }
 
-export interface AuthErrorResponse {
-    message: string,
-    errors: [
-        { field: string }
-    ]
-}
+// export interface AuthErrorResponse {
+//     message: string,
+//     errors: [
+//         { field: string }
+//     ]
+// }
 
 export interface CheckUserResponse {
     exists: boolean;
 }
 
-export interface ApiError {
+export interface AuthErrorResponse {
     data: {
         message: string;
         errors: {
