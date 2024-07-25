@@ -1,38 +1,42 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { useRefreshQuery } from "@/services/api/controllers/authApi"; // Обновите этот импорт под свои нужды
+import type { AxiosRequestConfig, AxiosError } from 'axios';
+import {BaseQueryFn} from "@reduxjs/toolkit/query";
+import $api from "@/services/api/helpers/createAxiosInstance.ts";
 
-const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL,
-  prepareHeaders: (headers) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-  credentials: 'include',
-});
-
-const baseQueryWithReauth = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
-
-  if (result.error && result.error.status === 401) {
-    // Попытка обновления токена
-    try {
-      const refreshResult = await authApi.refresh();
-      if (refreshResult.data) {
-        localStorage.setItem('token', refreshResult.data.accessToken);
-
-        // Повторный запрос с новым токеном
-        result = await baseQuery(args, api, extraOptions);
+const axiosBaseQuery =
+  (
+    { baseUrl }: { baseUrl: string } = { baseUrl: '' }
+  ): BaseQueryFn<
+    {
+      url: string
+      method?: AxiosRequestConfig['method']
+      data?: AxiosRequestConfig['data']
+      params?: AxiosRequestConfig['params']
+      headers?: AxiosRequestConfig['headers']
+    },
+    unknown,
+    unknown
+  > =>
+    async ({ url, method, data, params, headers }) => {
+      try {
+        const result = await $api({
+          url: baseUrl + url,
+          method,
+          data,
+          params,
+          headers,
+        })
+        return { data: result.data }
+      } catch (axiosError) {
+        const err = axiosError as AxiosError
+        return {
+          error: {
+            status: err.response?.status,
+            data: err.response?.data || err.message,
+          },
+        }
       }
-    } catch (err) {
-      console.error('Ошибка обновления токена: ', err);
-      localStorage.removeItem('token');
-    }
-  }
+    };
 
-  return result;
-};
-
-export { baseQueryWithReauth,baseQuery };
+export {
+  axiosBaseQuery
+}
