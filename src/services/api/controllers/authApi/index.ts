@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import type { AuthResponse, CheckUserResponse, CheckUserRequest } from './authApi.types';
-import { UserState } from '@moduleAuth/static/types/index.ts';
+import {User} from '@moduleAuth/static/types/index.ts';
+import {baseQuery} from "@/services/api/helpers/baseQuery.ts";
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  baseQuery: baseQuery,
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, { username: string; password: string }>({
       query: ({ username, password }) => ({
@@ -33,7 +34,7 @@ export const authApi = createApi({
         body: request,
       }),
     }),
-    getUser: builder.query<UserState, void>({
+    getUser: builder.query<User, void>({
       query: () => ({
         url: '/profile',
         method: 'GET',
@@ -56,3 +57,4 @@ export const {
   useGetUserQuery,
   useRefreshQuery,
 } = authApi;
+
