@@ -1,9 +1,13 @@
 import {useNavigate} from 'react-router-dom';
 import {useRegistrationMutation} from '@/services/api/controllers/authApi';
-import * as Yup from 'yup';
-import {ApiError} from '@/services/api/controllers/authApi/authApi.types.ts';
-import {FormProps, SubmitProps} from '@moduleAuth/views/RegistrationView/Registration.types.ts';
 import {setCredentials} from "@moduleAuth/store";
+
+import * as Yup from 'yup';
+
+import {AuthErrorResponse} from '@/services/api/controllers/authApi/authApi.types.ts';
+import {FormProps} from '@moduleAuth/views/RegistrationView/Registration.types.ts';
+import {SubmitProps} from "@moduleAuth/static/types";
+
 
 export const useRegisterView = () => {
   const [registration, {isLoading, error}] = useRegistrationMutation();
@@ -53,7 +57,7 @@ export const useRegisterView = () => {
       navigate('/');
 
     } catch (error) {
-      const registerError = error as ApiError;
+      const registerError = error as AuthErrorResponse;
       console.log(registerError);
       setFieldError('username', registerError.data.message);
     } finally {
