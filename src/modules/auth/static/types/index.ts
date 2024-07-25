@@ -1,20 +1,17 @@
-
-export interface IUser {
+export interface User {
+    activationLink: string;
     email: string;
-    id: string;
-    isActivated: boolean;
-    roles: Array<string>
+    username: string;
+    firstName: string;
+    image: string;
+    isActivated: string;
+    lastName: string;
+    roles: Array<string>;
 }
 
 
 export interface AuthState {
     accessToken: string;
-    refreshToken: string;
-    user: IUser | null;
+    user: User | null;
 }
 
-export interface UserState {
-    accessToken: string;
-    refreshToken: string;
-    user: IUser;
-}
