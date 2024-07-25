@@ -1,24 +1,24 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import type { AuthResponse, CheckUserResponse, CheckUserRequest } from './authApi.types';
 import {User} from '@moduleAuth/static/types/index.ts';
-import {baseQuery} from "@/services/api/helpers/baseQuery.ts";
+import {axiosBaseQuery} from "@/services/api/helpers/baseQuery.ts";
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: baseQuery,
+  baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, { username: string; password: string }>({
       query: ({ username, password }) => ({
         url: 'auth/login',
         method: 'POST',
-        body: { username, password },
+        data: { username, password },
       }),
     }),
     registration: builder.mutation<AuthResponse, FormData>({
       query: (request) => ({
         url: 'auth/registration',
         method: 'POST',
-        body: request,
+        data: request,
       }),
     }),
     logout: builder.mutation<void, void>({
@@ -31,7 +31,7 @@ export const authApi = createApi({
       query: (request) => ({
         url: 'auth/check-user',
         method: 'POST',
-        body: request,
+        data: request,
       }),
     }),
     getUser: builder.query<User, void>({
