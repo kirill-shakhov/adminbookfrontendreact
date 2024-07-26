@@ -5,6 +5,7 @@ import {UiButton} from "@/shared/components/UiButton";
 import {useAppDispatch} from "@/store/hooks";
 import {useLoginView} from "@moduleAuth/views/LoginView/useLoginView.tsx";
 import {Link} from "react-router-dom";
+import Logo from "@/shared/components/Logo/Logo.tsx";
 
 
 const LoginView = () => {
@@ -17,6 +18,13 @@ const LoginView = () => {
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+
+      <div className="mx-auto w-auto" style={{width: '70px'}}>
+        <Logo
+          theme="dark"
+        />
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login</h2>
       </div>
