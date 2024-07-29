@@ -1,12 +1,13 @@
 import {Form, Formik} from "formik";
-import {UiInput} from "@/shared/components/UiInput";
-import {UiButton} from "@/shared/components/UiButton";
 
 import {useAppDispatch} from "@/store/hooks";
 import {useLoginView} from "@moduleAuth/views/LoginView/useLoginView.tsx";
-import {Link} from "react-router-dom";
-import Logo from "@/shared/components/Logo/Logo.tsx";
 
+import {Link} from "react-router-dom";
+
+import {UiInput} from "@/shared/components/UiInput";
+import {UiButton} from "@/shared/components/UiButton";
+import {Logo} from "@/shared/components/Logo";
 
 const LoginView = () => {
   const {
