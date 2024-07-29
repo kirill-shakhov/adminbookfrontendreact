@@ -1,8 +1,11 @@
 import {Popover, PopoverButton, PopoverPanel, Transition} from '@headlessui/react';
 import {Link} from 'react-router-dom';
+
 import {UiProgressCircular} from "@/shared/components/UiProgressCircular";
-import UiAvatar from "@/shared/components/UiAvatar/UiAvatar.tsx";
+
+import {UiAvatar} from "@/shared/components/UiAvatar";
 import useHeaderProfile from "@/shared/components/AppHeader/HeaderProfile/HeaderProfile.hook.tsx";
+
 import useAuth from "@/shared/hooks/useAuth/useAuth.tsx";
 import {FC} from "react";
 
