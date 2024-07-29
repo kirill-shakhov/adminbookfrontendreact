@@ -1,11 +1,14 @@
 import {Link} from 'react-router-dom';
+
 import {Formik, Form} from 'formik';
-import {UiButton} from '@/shared/components/UiButton';
+
 import {useRegisterView} from './useRegistrationView.tsx';
 import {useAppDispatch} from "@/store/hooks.ts";
+
+import {UiUploadFile} from "@/shared/components/UiUploadFile";
+import {Logo} from "@/shared/components/Logo";
+import {UiButton} from '@/shared/components/UiButton';
 import {UiInput} from "@/shared/components/UiInput";
-import UiUploadFile from "@/shared/components/UiUploadFile/UiUploadFile.tsx";
-import Logo from "@/shared/components/Logo/Logo.tsx";
 
 const RegistrationView = () => {
   const {
