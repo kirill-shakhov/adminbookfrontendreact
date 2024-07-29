@@ -18,7 +18,7 @@ const AppFooter = () => {
       pages: [
         {
           name: 'profile',
-          link: 'profile'
+          link: '/settings/profile'
         }
       ]
     },
@@ -27,11 +27,11 @@ const AppFooter = () => {
       pages: [
         {
           name: 'library',
-          link: 'library'
+          link: '/books/library'
         },
         {
           name: 'upload book',
-          link: 'uploadBook'
+          link: '/books/uploadBook'
         }
       ]
     }
