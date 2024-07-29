@@ -1,19 +1,21 @@
 import {Link} from "react-router-dom";
 import {UiButton} from "@/shared/components/UiButton";
 import {FC} from "react";
-import {Book} from "@/shared/components/BookCard/BookCard.types.ts";
+import {BookCardProps} from "@/shared/components/BookCard/BookCard.types.ts";
 
-const BookCard: FC<Book> = (
+const BookCard: FC<BookCardProps> = (
   {
     _id
     , title
     , image,
-    author
+    author,
+    className,
   }) => {
   return (
     <Link
       to={`/book/${_id}`}
-      className="relative flex w-full h-full max-w-[18rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg  ">
+      className={`relative flex w-full h-full max-w-[18rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg ${className}`}
+    >
       <div
         className="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
         <img src={image}
@@ -61,7 +63,7 @@ const BookCard: FC<Book> = (
 
       </div>
       <div className="p-6 pt-3 mt-auto">
-        <UiButton>
+        <UiButton block>
           Read more
         </UiButton>
       </div>
