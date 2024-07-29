@@ -25,10 +25,6 @@ export default [
       },
       {
         path: 'upload-book',
-        element: <BooksLibraryView/>
-      },
-      {
-        path: 'upload-book',
         element: <BooksUploadView/>
       },
       {
