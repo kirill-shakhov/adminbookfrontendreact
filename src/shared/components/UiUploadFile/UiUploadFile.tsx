@@ -6,7 +6,7 @@ interface AvatarUploadProps {
   name: string;
 }
 
-const AvatarUpload: FC<AvatarUploadProps> = ({name}) => {
+const UiUploadFile: FC<AvatarUploadProps> = ({name}) => {
   const {setFieldValue} = useFormikContext();
   const [field] = useField(name);
 
@@ -33,4 +33,4 @@ const AvatarUpload: FC<AvatarUploadProps> = ({name}) => {
   );
 };
 
-export default AvatarUpload;
+export default UiUploadFile;
