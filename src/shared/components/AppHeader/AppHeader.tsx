@@ -3,8 +3,9 @@ import {Link, useLocation} from 'react-router-dom';
 
 import {Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react';
 import {Bars3Icon, XMarkIcon, ChevronDownIcon} from "@heroicons/react/16/solid";
-import Logo from '@/shared/components/Logo/Logo';
-import HeaderProfile from "@/shared/components/AppHeader/HeaderProfile/HeaderProfile.tsx";
+
+import {Logo} from '@/shared/components/Logo';
+import {HeaderProfile} from "@/shared/components/AppHeader/HeaderProfile";
 
 import useAuth from "@/shared/hooks/useAuth/useAuth.tsx";
 
