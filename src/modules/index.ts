@@ -1,10 +1,12 @@
-import AuthModule from "../modules/auth/index.ts";
-import SettingsModule from "@modules/settings/index.ts";
+import AuthModule from "../modules/auth";
+import SettingsModule from "@modules/settings";
+import BookModule from "@modules/book";
 import {RouteObject} from "react-router-dom";
 
 const router:RouteObject[] = [
   ...AuthModule.router,
-  ...SettingsModule.router
+  ...SettingsModule.router,
+  ...BookModule.router
 ]
 
 export default {
