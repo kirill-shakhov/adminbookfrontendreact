@@ -53,7 +53,7 @@ const AppHeader: FC = () => {
           <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">
             Main
           </Link>
-          <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to={'/books/library'} className="text-sm font-semibold leading-6 text-gray-900">
             My books
           </Link>
         </div>
