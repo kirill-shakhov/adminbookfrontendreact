@@ -1,31 +1,147 @@
-# React + TypeScript + Vite
+# AdminBooksFrontendReact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AdminBooksFrontendReact is a modern web application that makes it easier to manage books.
 
-Currently, two official plugins are available:
+## Screenshots
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Here are some visual previews of what AdminBooksFrontend offers:
 
-## Expanding the ESLint configuration
+![img.png](img.png)
+*Login Page
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![img_2.png](img_2.png)
+*Book Upload Page
 
-- Configure the top-level `parserOptions` property like this:
+## Project structure
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```plaintext
+AdminBookFrontend/
+   └── src/                       # Source code of the application
+      ├── App.vue                 # Root Vue component
+      ├── main.tsx                # Entry point of the application
+      ├── assets/                 # Resources and assets
+      │   └── images/             # Images
+      ├── modules/                # Application modules
+      │   ├── auth/               # Authentication module
+      │   ├── book/               # Book management module
+      │   ├── notifications/      # Notifications module
+      │   └── settings/           # Settings module
+      ├── router/                 # Application routing
+      ├── services/               # Services for API interaction
+      └── shared/                 # Shared components and composables
+      │    ├── components/        # Shared components
+      │    └── hooks/             # Shared hooks
+      └── utils/                  # Utility functions and helpers
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# adminbookfrontendreact
+## Component Structure Example
+
+```plaintext
+components/
+  └── UiButton/ 
+      ├── index.ts             
+      ├── useUiButton.tsx
+      ├── UiButton.types.ts
+      └──  UiButton.tsx
+```
+
+## Module Structure Example
+
+```plaintext
+moduleName/                           
+    ├── components/                          
+    ├── index.ts                    
+    ├── router/                     
+    │   └── index.ts               
+    ├── static/                     
+    │   └── types/                  
+    │       └── index.ts            
+    └── views/    
+         └── ModuleView  
+          ├── useModuleView.tsx
+          ├── ModuleView.types.ts
+          └── ModuleView.tsx      
+```
+
+## Dependencies
+
+React and React DOM
+
+@reduxjs/toolkit
+
+RTK Query
+
+React Router DOM
+
+Formik
+
+Yup
+
+Axios
+
+classnames
+
+@headlessui/react and @heroicons/react
+
+swiper
+
+uuid
+
+tailwindcss
+    
+## Installation Instructions
+
+This project requires Node.js version **19.6.1** or higher. If you don't have Node.js installed, you can download it
+from the [official Node.js website](https://nodejs.org/).
+
+### Step 1: Clone the Repository
+
+Clone the repository to your local machine using Git:
+
+```bash
+git clone https://github.com/kirill-shakhov/adminbookfrontendreact.git
+```
+
+### Step 2: Install Dependencies
+
+```bash
+npm install
+```
+
+This command installs all the dependencies defined in the package.json file.
+
+### Step 3: Configure Environment Variables
+
+Before running the application, configure the necessary environment variables. Copy the .env.example file and rename it
+to .env. This file serves as a template for the environment variables required by the application.
+
+```bash
+cp .env .env
+```
+
+### Step 4: Run the Development Server
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+This command will launch the Vite development server, which includes features like hot module replacement.
+
+### Step 5: Build the Application
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+This compiles TypeScript and bundles your Vue application using Vite. The output is stored in the dist/ directory.
+
+
+
+
+
+
+
