@@ -19,8 +19,8 @@ const AppHeader: FC = () => {
   }, [location]);
 
   const childrenPages = [
-    {name: 'Library', description: 'book library', href: 'library'},
-    {name: 'Upload', description: 'upload a new book', href: 'uploadBook'},
+    {name: 'Library', description: 'book library', href: '/books/library'},
+    {name: 'Upload', description: 'upload a new book', href: '/books/upload-book'},
   ];
 
   return (
@@ -115,7 +115,7 @@ const AppHeader: FC = () => {
                 </div>
 
                 <Link
-                  to="/profile"
+                  to="/settings/profile"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Profile
