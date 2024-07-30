@@ -1,27 +1,18 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {Book} from "@modules/book/static/types";
-import {useDeleteBookMutation} from "@/services/api/controllers/bookApi";
+import {useDeleteBookMutation, useGetUserBooksQuery} from "@/services/api/controllers/bookApi";
 import {useNavigate} from "react-router-dom";
+import {mimeTypes} from "@/utils/mimeTypes/mimeTypes.ts";
+import {setNotification} from "@modules/notifications/store";
+import {useAppDispatch} from "@/store/hooks.ts";
+import {UploadBookErrorResponse} from "@/services/api/controllers/bookApi/bookApi.types.ts";
 
 const useBookDetailsView = (book: Book | undefined) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [deleteBook] = useDeleteBookMutation();
+  const { refetch } = useGetUserBooksQuery();
 
-  interface MimeTypes {
-    [key: string]: string;
-  }
-
-  const mimeTypes: MimeTypes = {
-    '.epub': 'application/epub+zip',
-    '.mobi': 'application/x-mobipocket-ebook',
-    '.azw': 'application/vnd.amazon.ebook',
-    '.pdf': 'application/pdf',
-    '.fb2': 'application/x-fictionbook+xml',
-    '.txt': 'text/plain',
-    '.html': 'text/html',
-    '.doc': 'application/msword',
-    '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  };
 
   const getMimeType = (url: string): string => {
     const extension = url.slice(url.lastIndexOf('.'));
@@ -32,11 +23,22 @@ const useBookDetailsView = (book: Book | undefined) => {
     try {
       if (book) {
         await deleteBook(book?._id).unwrap();
-        console.log(`Книга с id ${book._id} успешно удалена.`);
+        await refetch();
+
         navigate('/');
+
+        dispatch(setNotification({
+          type: 'success',
+          message: `Книга успешно удалена.`
+        }))
       }
     } catch (e) {
-      console.error(e);
+      const error = e as AxiosResponse<UploadBookErrorResponse>;
+
+      dispatch(setNotification({
+        type: 'success',
+        message: error.data.message
+      }))
     }
   }
 
