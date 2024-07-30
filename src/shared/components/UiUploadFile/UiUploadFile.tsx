@@ -8,7 +8,7 @@ interface AvatarUploadProps {
 
 const UiUploadFile: FC<AvatarUploadProps> = ({name}) => {
   const {setFieldValue} = useFormikContext();
-  const [field] = useField(name);
+  const [field, meta] = useField(name);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.currentTarget.files) {
@@ -17,8 +17,8 @@ const UiUploadFile: FC<AvatarUploadProps> = ({name}) => {
   };
 
   return (
-    <div>
-      <label htmlFor={name}>Upload Avatar</label>
+    <div className={'flex flex-col'}>
+      <label htmlFor={name}>Upload File</label>
       <input id={name} name={name} type="file" onChange={handleFileChange}/>
       {field.value && (
         <div>
@@ -29,8 +29,22 @@ const UiUploadFile: FC<AvatarUploadProps> = ({name}) => {
           />
         </div>
       )}
+
+      {meta.error && meta.touched && <div className={"text-red-500"}>{meta.error}</div>}
     </div>
   );
 };
 
+// {
+//   "message": "Книга успешно добавлена",
+//   "book": {
+//   "title": "test",
+//     "book": "https://cloud-read.s3.eu-west-3.amazonaws.com/books/df49fd68-9d62-4cac-a700-d882a644421a.pdf",
+//     "genre": "66a88fd11a7dda5a55660051",
+//     "author": "66a88fd21a7dda5a55660054",
+//     "user": "65ae4fd460e5b92777d9a981",
+//     "_id": "66a88fd21a7dda5a55660056",
+//     "__v": 0
+// }
+// }
 export default UiUploadFile;
