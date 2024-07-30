@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import UiNotification from "@/shared/components/UiNotification/UiNotification.tsx";
+import {UiNotification} from "@/shared/components/UiNotification";
 import {useAppSelector} from "@/store/hooks.ts";
 import {Notification} from "@modules/notifications/static/types";
 
