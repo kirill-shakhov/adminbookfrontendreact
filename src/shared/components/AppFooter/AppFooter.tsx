@@ -31,7 +31,7 @@ const AppFooter = () => {
         },
         {
           name: 'upload book',
-          link: '/books/uploadBook'
+          link: '/books/upload-book'
         }
       ]
     }
