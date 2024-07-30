@@ -1,6 +1,6 @@
 import {AppHeader} from "@/shared/components/AppHeader";
 import {AppFooter} from "@/shared/components/AppFooter";
-import {Link, Outlet} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
 const BooksLayoutView = () => {
   return (
@@ -18,21 +18,27 @@ const BooksLayoutView = () => {
                 <li
                   className="py-2"
                 >
-                  <Link
+                  <NavLink
                     to={"/books/library"}
-                    className="block text px-4 py-2-sm font-semibold leading-6 text-gray-900">
+                    className={({isActive}) =>
+                      `block text px-4 py-2-sm font-semibold leading-6 text-gray-900 ${isActive ? 'bg-gray-100' : ''}`
+                    }
+                  >
                     Library
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li
                   className="py-2"
                 >
-                  <Link
-                    to={"/books/upload"}
-                    className="block text px-4 py-2-sm font-semibold leading-6 text-gray-900">
+                  <NavLink
+                    to={"/books/upload-book"}
+                    className={({isActive}) =>
+                      `block text px-4 py-2-sm font-semibold leading-6 text-gray-900 ${isActive ? 'bg-gray-100' : ''}`
+                    }
+                  >
                     Upload
-                  </Link>
+                  </NavLink>
 
                 </li>
               </ul>
