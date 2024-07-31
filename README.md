@@ -17,7 +17,7 @@ Here are some visual previews of what AdminBooksFrontend offers:
 ```plaintext
 AdminBookFrontend/
    └── src/                       # Source code of the application
-      ├── App.vue                 # Root Vue component
+      ├── App.tsx                 # Main page file
       ├── main.tsx                # Entry point of the application
       ├── assets/                 # Resources and assets
       │   └── images/             # Images
